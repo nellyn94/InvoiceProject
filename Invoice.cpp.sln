@@ -1,28 +1,136 @@
-﻿
-Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
-MinimumVisualStudioVersion = 10.0.40219.1
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "AnnaMarieHW", "AnnaMarieHW\AnnaMarieHW.vcxproj", "{8C09D059-C6C8-4AE1-89E7-CBBA555759F4}"
-EndProject
-Global
-	GlobalSection(SolutionConfigurationPlatforms) = preSolution
-		Debug|x64 = Debug|x64
-		Debug|x86 = Debug|x86
-		Release|x64 = Release|x64
-		Release|x86 = Release|x86
-	EndGlobalSection
-	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{8C09D059-C6C8-4AE1-89E7-CBBA555759F4}.Debug|x64.ActiveCfg = Debug|x64
-		{8C09D059-C6C8-4AE1-89E7-CBBA555759F4}.Debug|x64.Build.0 = Debug|x64
-		{8C09D059-C6C8-4AE1-89E7-CBBA555759F4}.Debug|x86.ActiveCfg = Debug|Win32
-		{8C09D059-C6C8-4AE1-89E7-CBBA555759F4}.Debug|x86.Build.0 = Debug|Win32
-		{8C09D059-C6C8-4AE1-89E7-CBBA555759F4}.Release|x64.ActiveCfg = Release|x64
-		{8C09D059-C6C8-4AE1-89E7-CBBA555759F4}.Release|x64.Build.0 = Release|x64
-		{8C09D059-C6C8-4AE1-89E7-CBBA555759F4}.Release|x86.ActiveCfg = Release|Win32
-		{8C09D059-C6C8-4AE1-89E7-CBBA555759F4}.Release|x86.Build.0 = Release|Win32
-	EndGlobalSection
-	GlobalSection(SolutionProperties) = preSolution
-		HideSolutionNode = FALSE
-	EndGlobalSection
-EndGlobal
+
+#include<iostream>
+#include "string"
+using namespace std;
+class Customer
+{
+public:
+	int id;
+	string first, last;
+public:
+	void data()
+	{
+		cout << "Enter customer ID:";
+		cin >> id;
+		cout << "Enter First Name:";
+		cin >> first;
+		cout << "Enter Last Name:";
+		cin >> last;
+	}
+
+};
+class Address
+{
+public:
+	string ads;
+public:
+	void data()
+	{
+		cout << "Enter Adrress:";
+		cin >> ads;
+	}
+};
+
+class Book
+{
+public:
+	int bookno;
+	int qty, sqty = 0;
+	int n = 0;
+	int price;
+	string bookname;
+public:
+	void data()
+	{
+		do
+		{
+			cout << "Choose book you want" << endl;
+			cout << "1.C" << endl;
+			cout << "2.C++" << endl;
+			cout << "3.Java" << endl;
+			cout << "4.Python" << endl;
+			cout << "5.PHP" << endl;
+			cout << "6.Hadoop" << endl;
+			cout << "Enter The Book NO.:" << endl;
+			cin >> bookno;
+			if (bookno == 1)
+			{
+				bookname = "C";
+				price = 180;
+
+			}
+			if (bookno == 2)
+			{
+				bookname = "C++";
+				price = 380;
+			}
+			if (bookno == 3)
+			{
+				bookname = "Java";
+				price = 200;
+			}
+			if (bookno == 4)
+			{
+				bookname = "Python";
+				price = 100;
+			}
+			if (bookno == 5)
+			{
+				bookname = "PHP";
+				price = 400;
+			}
+			if (bookno == 6)
+			{
+				bookname = "Hadoop";
+				price = 50;
+			}
+			cout << "Enter quatity(How many would you like to buy)" << endl;
+			cin >> qty;
+			sqty = sqty + qty;
+			if (sqty >= 3)
+			{
+				n = 1;
+			}
+			cout << "Continue to purchase(yes=1/n=0)" << endl;
+			cin >> n;
+
+			cout << "Total-------" << price + 22 << endl;
+		}
+		
+		while (n);
+		
+	}
+};
+class DataStore :public Customer, Address, Book
+{
+public:
+	void print()
+	{
+		cout << "Invoice Customer.............." << endl;
+		cout << "................................" << endl;
+		cout << "Customer Id:" << id << endl;
+		cout << "First Name" << first << endl;
+		cout << "Last Name " << last << endl;
+		cout << "Address" << ads << endl;
+		cout << "................................." << endl;
+		cout << "" << bookname << "Total=" << price << endl;
+		cout << "Total book sale--" << price << endl;
+		cout << "Tax----" << 12 << endl;
+		cout << "Sub total" << price + 12 << endl;
+		cout << "Extra fee----" << 10 << endl;
+	}
+};
+int main()
+{
+	Customer o1;
+	o1.data();
+	Address a1;
+	a1.data();
+	Book b1;
+	b1.data();
+	DataStore d1;
+	d1.print();
+		return 0;
+
+
+}
